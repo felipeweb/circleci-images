@@ -11,6 +11,9 @@ RUN sh -c "curl https://storage.googleapis.com/download.dartlang.org/linux/debia
 RUN apt-get update
 ENV PATH=/usr/lib/dart/bin:$PATH
 RUN apt-get -y install dart
+WORKDIR /opt
+RUN wget https://storage.googleapis.com/dart-archive/channels/stable/release/1.24.3/dartium/dartium-linux-x64-release.zip && unzip dartium-linux-x64-release.zip && rm dartium-linux-x64-release.zip
+RUN mv dartium-linux-x64-stable-1.24.2.0/ dartium && ln -s /opt/dartium/chrome /bin/dartium
 '
 
 source ../shared/images/generate.sh
